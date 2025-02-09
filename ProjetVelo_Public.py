@@ -94,7 +94,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 #file folder path
-filepath = '/mount/src/streamlit2/'
+filefolderpath = '/mount/src/streamlit2/'
 
 # Menu latéral
 st.sidebar.title("Sommaire")
@@ -1078,7 +1078,8 @@ elif page == pages[3]:
     #________Charger les données
     @st.cache_data 
     def load_data():
-        fileToLoad = os.path.join(filepath,'df_pre_modelisation.csv')
+        #fileToLoad = os.path.join(filefolderpath,'df_pre_modelisation.csv')
+        fileToLoad = filefolderpath+'df_pre_modelisation.csv'
         df_pre = pd.read_csv(fileToLoad) # Id_Compteur
         return df_pre
 
