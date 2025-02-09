@@ -26,7 +26,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 import joblib
-import gcsfs
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -1078,19 +1077,12 @@ elif page == pages[3]:
         df_pre = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_pre_modelisation.csv') # Id_Compteur
         return df_pre
 
-    def load_joblib(bucket_name, file_name):
-    fs = gcsfs.GCSFileSystem()
-    with fs.open(f'{bucket_name}/{file_name}') as f:
-        return joblib.load(f)
-     
 
     #________Charger les modèles enregistrés avec JOBLIB
     @st.cache_data 
     def load_models():
-        #RandomForest1_model = joblib.load('RandomForestPipe_compteursParis.pkl')
-        RandomForest1_model = joblib.load('https://drive.google.com/file/d/1WBr7pxf6TIAhCRzK_tasbw5mayLPtutR/view?usp=sharing')
-        #TreeRegressor_model = joblib.load('treeRegressor1_compteursParis.pkl')
-        TreeRegressor_model = joblib.load('https://drive.google.com/file/d/1kbcYwHn36yoaPzyVKwJq7Zdmt5KtkkOa/view?usp=drive_link')
+        RandomForest1_model = joblib.load('RandomForestPipe_compteursParis.pkl')
+        TreeRegressor_model = joblib.load('treeRegressor1_compteursParis.pkl')
         XGB_model = joblib.load('xgb_compteursParis.pkl')
         LGB1_model = joblib.load('lgb_compteursParis1.pkl')
         return RandomForest1_model, TreeRegressor_model, XGB_model, LGB1_model
