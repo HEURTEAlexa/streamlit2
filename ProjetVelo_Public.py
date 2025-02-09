@@ -25,7 +25,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import requests
+from io import StringIO
 import joblib
 
 from sklearn.compose import ColumnTransformer
@@ -1075,13 +1076,22 @@ elif page == pages[3]:
     st.subheader("Tableau des Performances des Modèles")
     st.markdown(table_html, unsafe_allow_html=True)
 
+    def load_original_data(github_file):
+        url = 'https://raw.githubusercontent.com/HEURTEAlexa/streamlit2/main/'+github_file
+        response = requests.get(url)
+        if response.status_code == 200:
+            return pd.read_csv(StringIO(response.text))
+        else:
+            st.error("Failed to load data from GitHub.")
+            return None
+
     #________Charger les données
     @st.cache_data 
     def load_data():
         #fileToLoad = os.path.join(filefolderpath,'df_pre_modelisation.csv')
-        fileToLoad = filefolderpath+'df_pre_modelisation.csv'
-        df_pre = pd.read_csv(fileToLoad) # Id_Compteur
-        return df_pre
+        #fileToLoad = filefolderpath+'df_pre_modelisation.csv'
+        #df_pre = pd.read_csv(fileToLoad) # Id_Compteur
+        return load_original_data(df_pre_modelisation.csv)
 
 
     #________Charger les modèles enregistrés avec JOBLIB
