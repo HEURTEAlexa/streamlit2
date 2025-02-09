@@ -1077,7 +1077,7 @@ elif page == pages[3]:
     #________Charger les données
     @st.cache_data 
     def load_data():
-        df_pre = pd.read_csv('df_pre_modelisation.csv') # Id_Compteur
+        df_pre = pd.read_csv(filepath+'df_pre_modelisation.csv') # Id_Compteur
         return df_pre
 
 
