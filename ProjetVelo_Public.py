@@ -1091,7 +1091,7 @@ elif page == pages[3]:
         #fileToLoad = os.path.join(filefolderpath,'df_pre_modelisation.csv')
         #fileToLoad = filefolderpath+'df_pre_modelisation.csv'
         #df_pre = pd.read_csv(fileToLoad) # Id_Compteur
-        return load_original_data(df_pre_modelisation.csv)
+        return load_original_data('df_pre_modelisation.csv')
 
 
     #________Charger les modèles enregistrés avec JOBLIB
