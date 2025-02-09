@@ -92,6 +92,9 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+#file folder path
+filepath = "/mount/src/streamlit2/"
+
 # Menu latéral
 st.sidebar.title("Sommaire")
 pages = ["Contexte et problématique projet", "Exploration des données", "Visualisation des données", "Synthèse des tests de modélisation", "Analyse prédictive par compteur", "Sources"]
@@ -300,7 +303,7 @@ elif page == pages[1]:
         def load_data(filepath):
             return pd.read_csv(filepath)
 
-        csv_file_path = 'df_pre_modelisation.csv'
+        csv_file_path = filepath+'df_pre_modelisation.csv'
         df = load_data(csv_file_path)
 
         # Utilisation de StringIO pour capturer les informations du DataFrame en tant que texte
