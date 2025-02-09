@@ -480,7 +480,7 @@ elif page == pages[1]:
     with st.expander("Voir les statistiques exploratoires"):
         col1, col2 = st.columns([1, 1])
         with col1:
-            with open("C:\\Users\\La Foune\\Documents\\Streamlit\\Graph_histogramme.html", 'r', encoding='utf-8') as file:
+            with open("Graph_histogramme.html", 'r', encoding='utf-8') as file:
                 html_content6 = file.read()
             components.html(
                 f"""
@@ -567,9 +567,9 @@ elif page == pages[2]:
     )
     with st.expander("Voir les graphiques"):
         # Charger les données
-        data_comptage_annee = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_comptage_annee.csv')
-        data_evolution = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_evolution.csv')
-        with open("C:\\Users\\La Foune\\Documents\\Streamlit\\ComptageEvenements.html", 'r', encoding='utf-8') as file:
+        data_comptage_annee = pd.read_csv('data_comptage_annee.csv')
+        data_evolution = pd.read_csv('data_evolution.csv')
+        with open("ComptageEvenements.html", 'r', encoding='utf-8') as file:
             html_content3 = file.read()
 
 
@@ -696,8 +696,8 @@ elif page == pages[2]:
     with st.expander("Voir les graphiques"):
 
         # Charger les données
-        data_agg = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_agg.csv')
-        data_pie = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_pie.csv')
+        data_agg = pd.read_csv('data_agg.csv')
+        data_pie = pd.read_csv('data_pie.csv')
 
         # Trouver l'index de la plus faible valeur
         min_index = data_pie['Comptage_horaire'].idxmin()
@@ -767,10 +767,10 @@ elif page == pages[2]:
 
         # Graphiques valeurs météo
         # Charger les données
-        data_avis_meteo = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_avis_meteo.csv')  
-        data_meteo = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_meteo.csv')      
-        data_uv = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_uv.csv')  
-        data_temperature = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_temperature.csv')  
+        data_avis_meteo = pd.read_csv('data_avis_meteo.csv')  
+        data_meteo = pd.read_csv('data_meteo.csv')      
+        data_uv = pd.read_csv('data_uv.csv')  
+        data_temperature = pd.read_csv('data_temperature.csv')  
 
         # Création de la figure avec les sous-tracés
         fig_meteo = make_subplots(
@@ -821,7 +821,7 @@ elif page == pages[2]:
     with st.expander("Voir les graphiques"):
         # Graphique TRANCHE HORAIRE ET SEMAINE OU Week-end 
         # Charger les données
-        data_TrancheH_Week_or_not = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\TrancheH_Week_or_not.csv')  
+        data_TrancheH_Week_or_not = pd.read_csv('TrancheH_Week_or_not.csv')  
 
         # Créer le graphique avec facettes
         fig_heure = px.bar(
@@ -871,7 +871,7 @@ elif page == pages[2]:
 
         #____________________ JOURS FERIES
         # Data Jours fériés
-        jour_ferie = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\jour_ferie.csv')  
+        jour_ferie = pd.read_csv('jour_ferie.csv')  
 
         # Graphique JOURS FERIES
         fig_jour_ferie = px.bar(
@@ -916,7 +916,7 @@ elif page == pages[2]:
 
         #____________________ HOLIDAYS
         # Data Jours VACANCES
-        data_holidays = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\data_holidays.csv') 
+        data_holidays = pd.read_csv('data_holidays.csv') 
 
         # Graphique JOURS FERIES
         fig_holidays = px.bar(
@@ -1074,7 +1074,7 @@ elif page == pages[3]:
     #________Charger les données
     @st.cache_data 
     def load_data():
-        df_pre = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_pre_modelisation.csv') # Id_Compteur
+        df_pre = pd.read_csv('df_pre_modelisation.csv') # Id_Compteur
         return df_pre
 
 
@@ -1166,7 +1166,7 @@ elif page == pages[3]:
         'Comptages_prédits': y_pred_Lgb1.astype(int), 
         'Id_Compteur' : X_test['Id_Compteur'], 
         'Heure' : X_test['Heure'], 
-     }, index=X_test.index).merge(pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv'), on='Id_Compteur', how='left')
+     }, index=X_test.index).merge(pd.read_csv('df_compteur_unique.csv'), on='Id_Compteur', how='left')
     
     #_________ XGB
     comparison_df_Xgb = pd.DataFrame({
@@ -1174,7 +1174,7 @@ elif page == pages[3]:
         'Comptages_prédits': y_pred_Xgb.astype(int), 
         'Id_Compteur' : X_test['Id_Compteur'], 
         'Heure' : X_test['Heure'], 
-     }, index=X_test.index).merge(pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv'), on='Id_Compteur', how='left')
+     }, index=X_test.index).merge(pd.read_csv('df_compteur_unique.csv'), on='Id_Compteur', how='left')
     
     #_________ TreeRegressor
     comparison_df_TreeRegressor = pd.DataFrame({
@@ -1182,7 +1182,7 @@ elif page == pages[3]:
         'Comptages_prédits': y_pred_TreeRegressor.astype(int), 
         'Id_Compteur' : X_test['Id_Compteur'], 
         'Heure' : X_test['Heure'], 
-     }, index=X_test.index).merge(pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv'), on='Id_Compteur', how='left')
+     }, index=X_test.index).merge(pd.read_csv('df_compteur_unique.csv'), on='Id_Compteur', how='left')
     
     #_________RandomForest
     comparison_df_RandomForest = pd.DataFrame({
@@ -1190,7 +1190,7 @@ elif page == pages[3]:
         'Comptages_prédits': y_pred_RandomForest.astype(int), 
         'Id_Compteur' : X_test['Id_Compteur'], 
         'Heure' : X_test['Heure'], 
-     }, index=X_test.index).merge(pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv'), on='Id_Compteur', how='left')
+     }, index=X_test.index).merge(pd.read_csv('df_compteur_unique.csv'), on='Id_Compteur', how='left')
 
     #-----------------------------------------Filtrer et calculer les moyennes pour chaque modèle
     #_________ LGBX
@@ -1313,9 +1313,9 @@ elif page == pages[4]:
     #________Charger les données
     @st.cache_data 
     def load_data():
-        df_pre = pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_pre_modelisation.csv') # Id_Compteur
-        lien_photos= pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\lien_photos.csv') #Id_Compteur Lien_image
-        nom_compteur= pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv') #Id_Compteur Address
+        df_pre = pd.read_csv('df_pre_modelisation.csv') # Id_Compteur
+        lien_photos= pd.read_csv('lien_photos.csv') #Id_Compteur Lien_image
+        nom_compteur= pd.read_csv('df_compteur_unique.csv') #Id_Compteur Address
         return df_pre, lien_photos, nom_compteur
     
     #________Charger les modèles enregistrés avec JOBLIB
@@ -1394,7 +1394,7 @@ elif page == pages[4]:
     df_groupe = pd.DataFrame(comparison_df_Lgb1[['Id_Compteur','District','Comptages_réels']])
     df_groupe['Mean_Comptages'] = df_groupe.groupby('Id_Compteur')['Comptages_réels'].transform('mean') # Faire la moyenne
     df_groupe['Group'] = pd.qcut(df_groupe['Mean_Comptages'], 4, labels=['Affluence Faible (1)', 'Affluence Moyenne  (2)', 'Affluence Forte (3)', 'Affluence Très élevée (4)']) # Créer les 4 groupes par moyenne
-    df_groupe = df_groupe.drop(columns='Comptages_réels').drop_duplicates().reset_index(drop=True).merge(pd.read_csv('C:\\Users\\La Foune\\Documents\\Streamlit\\df_compteur_unique.csv'), on='Id_Compteur', how='left') # Supprimer les colonnes inutiles, ajouter Address
+    df_groupe = df_groupe.drop(columns='Comptages_réels').drop_duplicates().reset_index(drop=True).merge(pd.read_csv('df_compteur_unique.csv'), on='Id_Compteur', how='left') # Supprimer les colonnes inutiles, ajouter Address
 
     # Calculer les statistiques pour chaque groupe
     stats = {}
@@ -1634,8 +1634,8 @@ elif page == pages[4]:
         
         @st.cache_data 
         def load_data():
-            districts = gpd.read_file('C:\\Users\\La Foune\\Documents\\Streamlit\\districts.geojson') 
-            df_reseau_lambert_carte = gpd.read_file('C:\\Users\\La Foune\\Documents\\Streamlit\\df_reseau_lambert_carte.geojson')         
+            districts = gpd.read_file('districts.geojson') 
+            df_reseau_lambert_carte = gpd.read_file('df_reseau_lambert_carte.geojson')         
             return districts, df_reseau_lambert_carte
         
         districts,df_reseau_lambert_carte = load_data()
