@@ -17,6 +17,7 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 import numpy as np
 import io
+import os
 import base64
 from PIL import Image
 import numpy as np
@@ -93,7 +94,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 #file folder path
-filepath = "/mount/src/streamlit2/"
+filepath = '/mount/src/streamlit2/'
 
 # Menu latéral
 st.sidebar.title("Sommaire")
@@ -1077,7 +1078,7 @@ elif page == pages[3]:
     #________Charger les données
     @st.cache_data 
     def load_data():
-        df_pre = pd.read_csv(filepath+'df_pre_modelisation.csv') # Id_Compteur
+        df_pre = pd.read_csv(os.path.join(filepath,'df_pre_modelisation.csv')) # Id_Compteur
         return df_pre
 
 
